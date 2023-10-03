@@ -2,6 +2,12 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import NextThemeProvider from '@/providers/theme-provider'
+import NextAuthProvider from '@/providers/next-auth-provider'
+import GlobalState from '@/context'
+import Header from '@/components/header'
+
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -16,7 +22,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className='dark:bg-black' >
+        <NextThemeProvider>
+          <NextAuthProvider>
+            <GlobalState>
+              <Header />
+              {children}
+            </GlobalState>
+          </NextAuthProvider>
+        </NextThemeProvider>
+      </body>
     </html>
   )
 }
