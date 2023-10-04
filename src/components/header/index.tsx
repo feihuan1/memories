@@ -6,11 +6,13 @@ import { MenuItem } from "@/utils/types";
 import { menuItems } from "@/utils";
 import Button from "../button";
 import ThemeToggler from "../theme";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Header() {
   const [sticky, setSticky] = useState<boolean>(false);
   const [navbarOpen, setNavbarOpen] = useState<boolean>(false);
-
+  const { data: session } = useSession();
+  console.log("session: ", session);
   const handleStickyNavbar = () => {
     if (window.screenY >= 80) {
       setSticky(true);
@@ -20,7 +22,7 @@ export default function Header() {
   };
 
   const handleNavbarToggle = () => {
-    setNavbarOpen(!navbarOpen)
+    setNavbarOpen(!navbarOpen);
   };
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function Header() {
                     ${sticky ? "py-5 lg:py-2" : "py-8"}
                     `}
               >
-                NextBlog
+                Memories
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
@@ -106,14 +108,18 @@ export default function Header() {
                 </nav>
               </div>
 
-                <div className="flex gap-4 items-center justify-end pr-16 lg:pr-0">
-                        <Button text='Create' onClick={() => {}} />
-                        <Button text='Login' onClick={() => {}} />
-                        <div className="flex gap-3 items-center">
-                            <ThemeToggler />
-                        </div>
+              <div className="flex gap-4 items-center justify-end pr-16 lg:pr-0">
+                {session && <Button text="New Memory" onClick={() => {}} />}
+                <Button
+                  text={session ? "Logout" : "Login"}
+                  onClick={() => session !== null ? signOut() : signIn('github')
+       
+                  }
+                />
+                <div className="flex gap-3 items-center">
+                  <ThemeToggler />
                 </div>
-
+              </div>
             </div>
           </div>
         </div>

@@ -5,9 +5,12 @@ import {
   createContext,
   SetStateAction,
   ReactNode,
-  Children,
   useState,
 } from "react";
+
+import { useSession } from "next-auth/react";
+import Spinner from "@/components/spinner";
+
 
 type ContextType = {
   loading: boolean;
@@ -23,6 +26,14 @@ export const GlobalContext = createContext<ContextType>(initialState);
 
 export default function GlobalState({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(false);
+  const { data: session } = useSession();
+
+  if(session === undefined) {
+    return (
+      <Spinner />
+    )
+  }
+
   return (
     <GlobalContext.Provider value={{ loading, setLoading }}>
       {children}

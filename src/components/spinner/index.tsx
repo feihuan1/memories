@@ -9,7 +9,8 @@ export default function Spinner() {
       height={120}
       ariaLabel="Loader"
       borderColor="#000"
-      barColor="#fff"
+      barColor="#fff" 
+      wrapperStyle={{display: 'block', margin: 'auto'}}
     />
   );
 }
