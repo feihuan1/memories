@@ -74,13 +74,13 @@ export const formControls: FormControlItem[] = [
 ];
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBlCooWO0lmd0JNEgeAfI2aCs1tA3hZNo8",
-  authDomain: "blog-app-97d34.firebaseapp.com",
-  projectId: "blog-app-97d34",
-  storageBucket: "blog-app-97d34.appspot.com",
-  messagingSenderId: "980489662763",
-  appId: "1:980489662763:web:56af6495955d00bed7d56e",
-  measurementId: "G-D8QK3X4RR6"
+  apiKey: "AIzaSyDRc7eeZ1XE_KrD6qPfOY8Wv6u6PiipxlA",
+  authDomain: "memor-f5ca1.firebaseapp.com",
+  projectId: "memor-f5ca1",
+  storageBucket: "memor-f5ca1.appspot.com",
+  messagingSenderId: "305373452874",
+  appId: "1:305373452874:web:48a4c9d8444a40ca2364b3",
+  measurementId: "G-MJPVMEMHG5"
 };
 
 export const initialBlogFormData = {

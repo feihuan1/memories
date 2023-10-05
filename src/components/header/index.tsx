@@ -1,18 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { MenuItem } from "@/utils/types";
 import { menuItems } from "@/utils";
 import Button from "../button";
 import ThemeToggler from "../theme";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [sticky, setSticky] = useState<boolean>(false);
   const [navbarOpen, setNavbarOpen] = useState<boolean>(false);
   const { data: session } = useSession();
-  console.log("session: ", session);
+  const router = useRouter()
+
+
   const handleStickyNavbar = () => {
     if (window.screenY >= 80) {
       setSticky(true);
@@ -109,7 +112,7 @@ export default function Header() {
               </div>
 
               <div className="flex gap-4 items-center justify-end pr-16 lg:pr-0">
-                {session && <Button text="New Memory" onClick={() => {}} />}
+                {session && <Button text="Create" onClick={() => (router.push('/create'))} />}
                 <Button
                   text={session ? "Logout" : "Login"}
                   onClick={() => session !== null ? signOut() : signIn('github')
